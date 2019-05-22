@@ -10,5 +10,5 @@ before_script:
   - cd bakery-front
   - npm install -g @angular/cli
 script:
-  - ng lint
-  - ng build --prod --base-href https://github.com/NoraUi/noraui.github.io/bakery/
+  - npm run lint
+  - npm run build --base-href https://github.com/NoraUi/noraui.github.io/bakery/
