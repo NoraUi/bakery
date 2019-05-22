@@ -9,5 +9,6 @@ branches:
 before_script:
   - npm install -g @angular/cli
 script:
-- ng lint
-- ng build --prod --base-href https://github.com/NoraUi/noraui.github.io/bakery/
+  - cd bakery-front
+  - ng lint
+  - ng build --prod --base-href https://github.com/NoraUi/noraui.github.io/bakery/
