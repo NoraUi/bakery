@@ -18,4 +18,4 @@ script:
   - sleep 120
   - echo "***** CURL to home url"
   - curl -s http://localhost:4200
-  - npm run build --base-href https://github.com/NoraUi/noraui.github.io/bakery/
+  - npm run build
