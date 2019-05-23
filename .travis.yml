@@ -11,11 +11,9 @@ before_script:
   - npm install
 script:
   - cd bakery-front
-  - pwd
-  - ls -l
-  - npm run lint
   - npm install
-  - echo "***** START ANGULAR 4 APPLICATION"
+  - npm run lint
+  - echo "***** START ANGULAR APPLICATION"
   - npm start &
   - sleep 120
   - echo "***** CURL to home url"
