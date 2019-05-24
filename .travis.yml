@@ -8,6 +8,14 @@ branches:
   - master
 before_script:
   - npm install -g @angular/cli
+  - npm install
 script:
-- ng lint
-- ng build --prod --base-href https://github.com/NoraUi/noraui.github.io/bakery/
+  - cd bakery-front
+  - npm install
+  - npm run lint
+  - echo "***** START ANGULAR APPLICATION"
+  - npm start &
+  - sleep 120
+  - echo "***** CURL to home url"
+  - curl -s http://localhost:4200
+  - npm run build
