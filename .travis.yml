@@ -3,12 +3,19 @@ node_js:
   - "9"
 dist: trusty
 sudo: required
+
+addons:
+  sonarcloud:
+    organization: "noraui"
+
 branches:
   only:
   - master
+
 before_script:
   - npm install -g @angular/cli
   - npm install
+
 script:
   - cd bakery-front
   - npm install
