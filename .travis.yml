@@ -13,7 +13,7 @@ branches:
   - master
 
 before_script:
-  - npm install -g @angular/cli
+  - npm install -g @angular/cli -s
   - ng analytics off
   - npm install
 
