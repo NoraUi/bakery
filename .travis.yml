@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "9"
+  - "10.15"
 dist: trusty
 sudo: required
 
@@ -13,7 +13,7 @@ branches:
   - master
 
 before_script:
-  - "export NG_CLI_ANALYTICS=ci"
+  - export NG_CLI_ANALYTICS=ci
   - npm install -g @angular/cli -s
   - ng analytics off
   - npm install
