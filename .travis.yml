@@ -13,6 +13,7 @@ branches:
   - master
 
 before_script:
+  - "export NG_CLI_ANALYTICS=ci"
   - npm install -g @angular/cli -s
   - ng analytics off
   - npm install
