@@ -1,0 +1,80 @@
+{
+    "LOGIN": {
+      "TITLE": "Se connecter",
+      "LOGIN": "Identifiant",
+      "PASSWORD": "Mot de passe",
+      "SUBMIT": "Se connecter",
+      "FORGOT_PASSWORD": "Mot de passe oublié ?",
+      "USER_NOT_FOUND": "Nom d'utilisateur ou mot de passe incorrect.",
+      "FORCE_CHANGE_PASSWORD": "Vous devez changer votre mot de passe.",
+      "PASSWORD_NOT_CONFORM_POLICY": "Format du mot de passe incorrect",
+      "404": "Erreur de connexion aux webservices"
+    },
+    "CHANGE_PASSWORD": {
+      "TITLE": "Changer de mot de passe",
+      "LOGIN": "Identifiant",
+      "OLD_PASSWORD": "Ancien mot de passe",
+      "VERIFICATION_CODE": "Code de vérification",
+      "NEW_PASSWORD": "Nouveau mot de passe",
+      "CONFIRM_PASSWORD": "Confirmation du nouveau mot de passe",
+      "SUBMIT": "Valider",
+      "USER_NOT_FOUND": "Nom d'utilisateur ou mot de passe incorrect.",
+      "404": "Erreur de connexion aux webservices",
+      "RESET_PASSWORD_SENT": "Un email vous a été envoyé pour réinitialiser votre mot de passe",
+      "CONFIRM_PASSWORD_DO_NOT_MATCH_NEW_PASSWORD": "La confirmation du mot de passe doit correspondre au nouveau mot de passe saisi précédemment."
+    },
+    "MENU": {
+      "TITLE": "Bakery",
+      "REFERENCER": "Référenceur",
+      "CONTRIBUTOR": "Contributeur",
+      "ADMINISTRATION": "Administration",
+      "LOGOUT": "Déconnexion"
+    },
+    "ADMIN": {
+      "TITLE": "Administration",
+      "USER": {
+        "TITLE": "Liste des utilisateurs",
+        "LOGIN": "Identifiant",
+        "NAME": "Nom",
+        "FIRSTNAME": "Prénom",
+        "EMAIL": "E-mail",
+        "PROFILE": "Profil",
+        "ROLE": "Rôle",
+        "ROLES": {
+          "ADMIN": "Administrateur système",
+          "CONTRIBUTOR": "Contributeur",
+          "REFERENCER": "Référenceur"
+        },
+        "ENABLED": "Activé",
+        "STATUS": "Statut",
+        "STATUSES": {
+          "UNCONFIRMED": "Non-confirmé",
+          "CONFIRMED": "Confirmé",
+          "ARCHIVED": "Archivé",
+          "COMPROMISED": "compromis",
+          "RESET_REQUIRED": "Reset requise",
+          "UNKNOWN": "Inconnu",
+          "FORCE_CHANGE_PASSWORD": "Mot de passe à changer"
+        },
+        "ERROR": {
+          "CREATION_INTEGRITY_ERROR": "L'utilisateur ne peut pas être créé (Identifiant déjà utilisé)."
+        },
+        "USER_FORM": {
+          "TITLE": "Création d'un utilisateur",
+          "CREATE": "Créer",
+          "EDIT": "Modifier",
+          "CANCEL": "Annuler"
+        }
+      }
+    },
+    "404": {
+      "TITLE": "La page que vous avez demandée n'existe pas."
+    },
+    "403": {
+      "TITLE": "Vous n'êtes pas autorisé à accéder à cette page."
+    },
+    "500": {
+      "TITLE": "Une erreur est survenue.",
+      "RETRY": "Veuillez réessayer plus tard."
+    }
+}

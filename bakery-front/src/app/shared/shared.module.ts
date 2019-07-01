@@ -1,12 +1,48 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OneClickOnlyButtonDirective } from './directives/one-click-only-button/one-click-only-button.directive';
+import { NgbDateAdapter, NgbDateNativeAdapter, NgbDateParserFormatter, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import { MenuComponent } from './components/menu/menu.component';
+import { SessionService } from './services/authentication/session.service';
+import { AwsService } from './services/aws/aws.service';
+import { AuthGuardService } from './guards/auth-guard.service';
+import { LoginService } from './services/authentication/login.service';
+import { RoleGuardService } from './guards/role-guard.service';
+import { UserService } from './services/user/user.service';
+import { HomeRedirectGuardService } from './guards/home-redirect-guard.service';
+import { OneClickOnlyButtonDirective } from './directives/one-click-only-button/one-click-only-button.directive';
 
 @NgModule({
-  declarations: [OneClickOnlyButtonDirective, MenuComponent],
+  declarations: [
+  MenuComponent,
+  OneClickOnlyButtonDirective],
   imports: [
-    CommonModule
+    TranslateModule,
+    CommonModule,
+    FormsModule,
+    NgbModule,
+    RouterModule
+  ],
+  exports: [
+    TranslateModule,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgbModule,
+    MenuComponent
+  ],
+  providers: [
+    SessionService,
+    AwsService,
+    AuthGuardService,
+    RoleGuardService,
+    HomeRedirectGuardService,
+    UserService,
+    LoginService,
+    { provide: NgbDateAdapter, useClass: NgbDateNativeAdapter },
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

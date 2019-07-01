@@ -1,3 +1,16 @@
-<p>
-  server-error works!
-</p>
+<div class="container bg">
+  <div class="jumbotron">
+    <div class="text-center">
+      <h3 id="500-message">
+        {{ '500.TITLE' | translate }}
+      </h3>
+      {{ '500.RETRY' | translate }}
+      <br/>
+      <hr/>
+      <br>
+      <pre>
+        {{ lastError }}
+      </pre>
+    </div>
+  </div>
+</div>

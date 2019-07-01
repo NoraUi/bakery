@@ -1,15 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionService } from '../../services/authentication/session.service';
+import { UserService } from '../../services/user/user.service';
+import { User } from '../../../model/user.model';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  user: User;
+  isAdmin: boolean;
+  isContributor: boolean;
+  isReferencer: boolean;
+
+  constructor(private sessionService: SessionService, private userService: UserService) { }
 
   ngOnInit() {
+    this.user = this.sessionService.getUserInfo();
+    this.isAdmin = this.userService.isAdmin();
+    this.isContributor = this.userService.isContributor();
+    this.isReferencer = this.userService.isReferencer();
   }
 
 }

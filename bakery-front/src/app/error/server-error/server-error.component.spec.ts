@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ServerErrorComponent } from './server-error.component';
+import { TranslatePipeStub } from '../../../testing/translate.pipe.stub';
+import { LAST_ERROR_STORAGE_KEY } from '../../shared/constant/app.constants';
 
 describe('ServerErrorComponent', () => {
   let component: ServerErrorComponent;
@@ -8,7 +10,7 @@ describe('ServerErrorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ServerErrorComponent ]
+      declarations: [ ServerErrorComponent, TranslatePipeStub ]
     })
     .compileComponents();
   }));
@@ -19,7 +21,10 @@ describe('ServerErrorComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create and set error', () => {
+    localStorage.setItem(LAST_ERROR_STORAGE_KEY, 'error');
     expect(component).toBeTruthy();
+    component.ngOnInit();
+    expect(component.lastError).toEqual('error');
   });
 });

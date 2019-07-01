@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
+import { SharedModule } from '../shared/shared.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
+import { ErrorRoutingModule } from './error-routing.module';
 import { ServerErrorComponent } from './server-error/server-error.component';
 
 @NgModule({
-  declarations: [NotAuthorizedComponent, PageNotFoundComponent, ServerErrorComponent],
+  declarations: [
+    PageNotFoundComponent,
+    NotAuthorizedComponent,
+    ServerErrorComponent
+  ],
   imports: [
-    CommonModule
+    SharedModule,
+    ErrorRoutingModule
   ]
 })
 export class ErrorModule { }

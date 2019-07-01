@@ -10,6 +10,7 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
+      require('karma-junit-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
@@ -20,13 +21,31 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml'],
+    junitReporter: {
+      outputDir: 'reports/'
+    },
+    reporters: ['progress', 'kjhtml', 'junit'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false,
-    restartOnFileChange: true
+    browsers: ['Chrome', 'ChromeHeadless', 'ChromeHeadlessNoSandbox', 'ChromeNoSandbox'],
+    browserDisconnectTimeout: 10000,
+    browserDisconnectTolerance: 3,
+    browserNoActivityTimeout: 60000,
+    customLaunchers:
+      {
+        ChromeHeadlessNoSandbox: {
+          base: 'ChromeHeadless',
+          flags:
+            ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu']
+        },
+        ChromeNoSandbox: {
+          base: 'Chrome',
+          flags:
+            ['--no-sandbox', '--disable-setuid-sandbox']
+        }
+      },
+    singleRun: false
   });
 };
