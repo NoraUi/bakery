@@ -75,7 +75,7 @@ export class AwsService {
       IdentityPoolId: identityPool,
       Logins: logins
     };
-    const serviceConfigs = <awsservice.ServiceConfigurationOptions>{};
+    const serviceConfigs = {} as awsservice.ServiceConfigurationOptions;
     const creds = new AWS.CognitoIdentityCredentials(params, serviceConfigs);
     this.setCognitoCreds(creds);
   }
@@ -94,16 +94,16 @@ export class AwsService {
     const cognitoidentityserviceprovider = new CognitoIdentityServiceProvider({
       credentials: this.getCognitoCreds()
     });
-    const params = {
+    const params: CognitoIdentityServiceProvider.Types.ListUsersRequest = {
       UserPoolId: poolData.UserPoolId
     };
-    if (data['PaginationToken']) {
-      params['PaginationToken'] = data['PaginationToken'];
+    if (data.PaginationToken) {
+      params.PaginationToken = data.PaginationToken;
     } else if (!firstPage) {
       return EMPTY;
     }
-    return Observable.create(obs => {
-      cognitoidentityserviceprovider.listUsers(params, function (errr, dataFound) {
+    return new Observable(obs => {
+      cognitoidentityserviceprovider.listUsers(params, (errr, dataFound) => {
         if (errr) {
           return obs.error(errr);
         } else {
@@ -141,8 +141,8 @@ export class AwsService {
           GroupName: ADMIN_GROUP_NAME,
           UserPoolId: poolData.UserPoolId
         };
-        return Observable.create(ob => {
-          cognitoidentityserviceprovider.listUsersInGroup(p, function (err, d) {
+        return new Observable(ob => {
+          cognitoidentityserviceprovider.listUsersInGroup(p, (err, d) => {
             if (err) {
               ob.error(err);
             } else {
@@ -189,15 +189,16 @@ export class AwsService {
         }
       ]
     };
-    return Observable.create(obs => {
-      cognitoidentityserviceprovider.adminCreateUser(params, (error, data) => this.voidActionAndReturnNext(error, obs, data ? data.User : data));
-    }).pipe(mergeMap((u: AwsUser) => {
+    return new Observable(obs => {
+      cognitoidentityserviceprovider.adminCreateUser(params, (error, data) =>
+        this.voidActionAndReturnNext(error, obs, data ? data.User : data));
+      }).pipe(mergeMap((u: AwsUser) => {
         const p = {
           GroupName: ADMIN_GROUP_NAME,
           UserPoolId: poolData.UserPoolId,
           Username: u.Username
         };
-        return Observable.create(ob => this.adminAddUserToGroup(p, ob, cognitoidentityserviceprovider, user, u));
+        return new Observable(ob => this.adminAddUserToGroup(p, ob, cognitoidentityserviceprovider, user, u));
       }),
       mergeMap((u: AwsUser) => {
         const p = {
@@ -205,7 +206,7 @@ export class AwsService {
           UserPoolId: poolData.UserPoolId,
           Username: u.Username
         };
-        return Observable.create(ob => this.adminRemoveUserFromGroup(p, ob, cognitoidentityserviceprovider, user, u));
+        return new Observable<User[]>(ob => this.adminRemoveUserFromGroup(p, ob, cognitoidentityserviceprovider, user, u));
       }));
   }
 
@@ -236,7 +237,7 @@ export class AwsService {
       ForceAliasCreation: false,
       MessageAction: 'RESEND'
     };
-    return Observable.create(obs => {
+    return new Observable(obs => {
       cognitoidentityserviceprovider.adminCreateUser(params, (error, data) => this.voidActionAndReturnNext(error, obs, data.User));
     });
   }
@@ -254,7 +255,7 @@ export class AwsService {
       Username: user.username,
       UserAttributes: []
     };
-    return Observable.create(obs => {
+    return new Observable(obs => {
       cognitoidentityserviceprovider.adminUpdateUserAttributes(params, (error, data) =>
         this.voidActionAndReturnNext(error, obs, user));
     }).pipe(mergeMap((u: User) => {
@@ -263,7 +264,7 @@ export class AwsService {
           UserPoolId: poolData.UserPoolId,
           Username: u.username
         };
-        return Observable.create(ob => this.adminAddUserToGroup(p, ob, cognitoidentityserviceprovider, user, u));
+        return new Observable(ob => this.adminAddUserToGroup(p, ob, cognitoidentityserviceprovider, user, u));
       }),
       mergeMap((u: User) => {
         const p = {
@@ -271,7 +272,7 @@ export class AwsService {
           UserPoolId: poolData.UserPoolId,
           Username: u.username
         };
-        return Observable.create(ob => this.adminRemoveUserFromGroup(p, ob, cognitoidentityserviceprovider, user, u));
+        return new Observable<User>(ob => this.adminRemoveUserFromGroup(p, ob, cognitoidentityserviceprovider, user, u));
       }));
   }
 
@@ -298,19 +299,19 @@ export class AwsService {
     };
     const cognitoUser = new CognitoUser(userData);
 
-    const _self = this;
-    return Observable.create(subscriber => {
+    const self = this;
+    return new Observable(subscriber => {
       cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: result => {
           const cognitoGetUser = userPool.getCurrentUser();
           if (cognitoGetUser != null) {
-            cognitoGetUser.getSession(function (err, session) {
+            cognitoGetUser.getSession( (err, session) => {
               if (session) {
-                _self.buildCognitoCreds(session.getIdToken().getJwtToken(), poolData, region, identityPool);
+                self.buildCognitoCreds(session.getIdToken().getJwtToken(), poolData, region, identityPool);
 
                 // store jwt token in storage
-                _self.tokenStorageService.setAccessToken(session.getIdToken().getJwtToken());
-                _self.tokenStorageService.setRefreshToken(session.getRefreshToken().getToken());
+                self.tokenStorageService.setAccessToken(session.getIdToken().getJwtToken());
+                self.tokenStorageService.setRefreshToken(session.getRefreshToken().getToken());
 
                 subscriber.next();
               }
@@ -362,7 +363,7 @@ export class AwsService {
     const currentUser = userPool.getCurrentUser();
 
 
-    return Observable.create(
+    return new Observable(
       observer => {
         if (currentUser) {
           currentUser.getSession((sessionError, session) => {
@@ -402,7 +403,7 @@ export class AwsService {
     const userPool = new CognitoUserPool(poolData);
     const currentUser = userPool.getCurrentUser();
 
-    return Observable.create(
+    return new Observable(
       observer => {
         if (currentUser) {
           currentUser.getSession((sessionError, session) => {
@@ -452,7 +453,7 @@ export class AwsService {
     };
     const cognitoUser = new CognitoUser(userData);
 
-    return Observable.create(subscriber => {
+    return new Observable(subscriber => {
       cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: r => {
           // nothing to do
@@ -461,10 +462,10 @@ export class AwsService {
           console.log(err);
           if (err.code === 'PasswordResetRequiredException' || err.code === 'NotAuthorizedException') {
             cognitoUser.confirmPassword(oldpassword, newpassword, {
-              onSuccess: function () {
+              onSuccess() {
                 subscriber.next();
               },
-              onFailure: function (e) {
+              onFailure(e) {
                 subscriber.error({
                   reason: 'USER_NOT_FOUND'
                 });
@@ -485,8 +486,8 @@ export class AwsService {
               if (err.code === 'InvalidPasswordException') {
                 subscriber.error({
                   reason: 'PASSWORD_NOT_CONFORM_POLICY',
-                  'user': {
-                    'username': user
+                  user: {
+                    username: user
                   }
                 });
               } else {
@@ -512,7 +513,7 @@ export class AwsService {
       Pool: userPool
     };
     const cognitoUser = new CognitoUser(userData);
-    return Observable.create(subscriber => {
+    return new Observable(subscriber => {
       cognitoUser.forgotPassword({
         onSuccess: () => {
           subscriber.next();

@@ -42,7 +42,7 @@ describe('RoleGuardService', () => {
     userService.hasRole.and.returnValue(false);
 
     const route = new ActivatedRouteSnapshot();
-    route.data = { 'expectedRole': 'admin'};
+    route.data = { expectedRole: 'admin'};
 
     expect(service.canActivate(route)).toBeFalsy();
 
@@ -56,7 +56,7 @@ describe('RoleGuardService', () => {
     userService.hasRole.and.returnValue(true);
 
     const route = new ActivatedRouteSnapshot();
-    route.data = { 'expectedRole': 'admin'};
+    route.data = { expectedRole: 'admin'};
 
     expect(service.canActivate(route)).toBeTruthy();
 
@@ -70,7 +70,7 @@ describe('RoleGuardService', () => {
     userService.hasAnyRole.and.returnValue(true);
 
     const route = new ActivatedRouteSnapshot();
-    route.data = { 'expectedRoles': ['admin', 'PLFT']};
+    route.data = { expectedRoles: ['admin', 'PLFT']};
 
     expect(service.canActivate(route)).toBeTruthy();
 
@@ -84,7 +84,7 @@ describe('RoleGuardService', () => {
     userService.hasAnyRole.and.returnValue(false);
 
     const route = new ActivatedRouteSnapshot();
-    route.data = { 'expectedRoles': ['admin', 'PLFT']};
+    route.data = { expectedRoles: ['admin', 'PLFT']};
 
     expect(service.canActivate(route)).toBeFalsy();
 

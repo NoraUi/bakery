@@ -1,3 +1,4 @@
+import { Type } from '@angular/core';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
@@ -26,7 +27,7 @@ describe('JwtInterceptor', () => {
       ],
     });
     client = TestBed.get(HttpClient);
-    httpMock = TestBed.get(HttpTestingController);
+    httpMock = TestBed.get(HttpTestingController as Type<HttpTestingController>);
     tokenStorageService = TestBed.get(TokenStorageService);
 
     tokenStorageService.getAccessToken.and.returnValue(token);

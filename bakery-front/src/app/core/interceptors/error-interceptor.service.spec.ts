@@ -1,3 +1,4 @@
+import { Type } from '@angular/core';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { HTTP_INTERCEPTORS, HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -48,7 +49,7 @@ describe('ErrorInterceptor', () => {
     });
 
     client = TestBed.get(HttpClient);
-    httpMock = TestBed.get(HttpTestingController);
+    httpMock = TestBed.get(HttpTestingController as Type<HttpTestingController>);
     appConfigService = TestBed.get(AppConfigService);
     tokenStorageService = TestBed.get(TokenStorageService);
     router = TestBed.get(Router);
