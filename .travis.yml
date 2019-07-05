@@ -29,4 +29,4 @@ script:
   - echo "***** CURL to home url"
   - curl -s http://localhost:4200
   - npm run build
-  - ngh --dir=dist/bakery --message="deploy by Travis-ci" --repo=https://$GITHUB_TOKEN@github.com/NoraUi/bakery.github.io.git --branch=master
+  - ngh --dir=dist/bakery --message="deploy by Travis-ci" --repo=https://$GITHUB_TOKEN@github.com/NoraUi/bakery.io.git --branch=master
