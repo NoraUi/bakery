@@ -94,10 +94,8 @@ export class AdminComponent implements OnInit {
       name: '',
       firstname: '',
       email: '',
-      spadaId: '',
       region: '',
       department: '',
-      fccId: '',
       roles: [[ADMIN_ROLE]]
     });
     const modalUser = this.modalService.open(UserFormComponent);
@@ -116,10 +114,8 @@ export class AdminComponent implements OnInit {
       name: u.name,
       firstname: u.firstname,
       email: u.email,
-      spadaId: u.spadaId,
       region: u.region,
       department: u.department,
-      fccId: u.fccId,
       roles: [u.roles]
     });
     const modalUser = this.modalService.open(UserFormComponent);
