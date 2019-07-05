@@ -9,7 +9,7 @@ import { JwtInterceptor } from './interceptors/jwt-interceptor.service';
 import { ErrorInterceptor } from './interceptors/error-interceptor.service';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient);
+  return new TranslateHttpLoader(httpClient, './assets/i18n/');
 }
 
 @NgModule({
