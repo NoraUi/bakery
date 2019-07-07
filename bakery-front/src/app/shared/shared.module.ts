@@ -11,6 +11,7 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { LoginService } from './services/authentication/login.service';
 import { RoleGuardService } from './guards/role-guard.service';
 import { UserService } from './services/user/user.service';
+import { ReferentialService } from './services/referentials/referential.service';
 import { HomeRedirectGuardService } from './guards/home-redirect-guard.service';
 import { OneClickOnlyButtonDirective } from './directives/one-click-only-button/one-click-only-button.directive';
 
@@ -40,6 +41,7 @@ import { OneClickOnlyButtonDirective } from './directives/one-click-only-button/
     RoleGuardService,
     HomeRedirectGuardService,
     UserService,
+    ReferentialService,
     LoginService,
     { provide: NgbDateAdapter, useClass: NgbDateNativeAdapter },
   ]

@@ -1,0 +1,7 @@
+{
+  "profiles": [
+    "ADMIN",
+    "REFERENCER",
+    "CONTRIBUTOR"
+  ]
+}

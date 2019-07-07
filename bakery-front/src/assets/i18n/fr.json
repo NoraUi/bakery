@@ -39,7 +39,7 @@
         "FIRSTNAME": "Prénom",
         "EMAIL": "E-mail",
         "PROFILE": "Profil",
-        "ROLE": "Rôle",
+        "ROLE": "Rôles",
         "ROLES": {
           "ADMIN": "Administrateur système",
           "CONTRIBUTOR": "Contributeur",

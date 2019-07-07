@@ -1,6 +1,6 @@
 // Roles
 export const ADMIN_ROLE = 'ADMIN';
-export const REFERENCER_ROLE = 'referencer';
+export const REFERENCER_ROLE = 'REFERENCER';
 export const CONTRIBUTOR_ROLE = 'CONTRIBUTOR';
 
 // Last error storage key
