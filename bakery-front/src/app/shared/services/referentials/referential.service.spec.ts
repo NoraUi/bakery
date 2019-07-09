@@ -39,7 +39,7 @@ describe('ReferentialService', () => {
 
     const req = httpMock.expectOne({ url: '/assets/data/profiles.json', method: 'GET' });
     req.flush({
-      'profiles': ['ADMIN', 'REFERENCER', 'CONTRIBUTOR']
+      profiles: ['ADMIN', 'REFERENCER', 'CONTRIBUTOR']
     });
   });
 
