@@ -16,9 +16,11 @@ export class AdminComponent implements OnInit {
   notFoundDisplay: boolean;
   usernameExistsExceptionDisplay: boolean;
   integrityDisplay: boolean;
+  unknownError: boolean;
   errDisplay: boolean;
   infoDisplay: boolean;
   users: User[] = [];
+  loading = false;
 
   constructor(private adminService: AdminService,
               private modalService: NgbModal,
@@ -33,11 +35,16 @@ export class AdminComponent implements OnInit {
   }
 
   getUsers() {
+    this.loading = true;
     this.adminService.getUsers().subscribe(users => {
         // Fix because angular is not aware of cognito callbacks
-        this.ngZone.run(() => this.users = users);
+        this.ngZone.run(() => { this.users = users; this.loading = false; });
       },
-      (error) => this.errorUsersProcessor(error));
+      (error) => {
+        // Fix because angular is not aware of cognito callbacks
+        this.ngZone.run(() => this.errorUsersProcessor(error));
+      }
+    );
   }
 
   temporaryPasswordSend() {
@@ -46,6 +53,7 @@ export class AdminComponent implements OnInit {
   }
 
   errorUsersProcessor(error: any) {
+    this.loading = false;
     this.closeAlert();
     if (error.status === 404 || error.status === 504) {
       this.notFoundDisplay = true;
@@ -53,18 +61,30 @@ export class AdminComponent implements OnInit {
       this.usernameExistsExceptionDisplay = true;
     } else if (error.status === 400) {
       this.integrityDisplay = true;
+    } else {
+      this.unknownError = true;
     }
     this.errDisplay = true;
   }
 
   createUser(user: User) {
+    this.loading = true;
     this.adminService.createUser(user).subscribe(() => this.getUsers(),
-      (error) => this.errorUsersProcessor(error));
+      (error) => {
+        // Fix because angular is not aware of cognito callbacks
+        this.ngZone.run(() => this.errorUsersProcessor(error));
+      }
+    );
   }
 
   editUser(user: User) {
+    this.loading = true;
     this.adminService.editUser(user).subscribe(() => this.getUsers(),
-      (error) => this.errorUsersProcessor(error));
+      (error) => {
+        // Fix because angular is not aware of cognito callbacks
+        this.ngZone.run(() => this.errorUsersProcessor(error));
+      }
+    );
   }
 
   resendTemporaryPassword(username: string) {
@@ -72,7 +92,11 @@ export class AdminComponent implements OnInit {
     this.adminService.resendTemporaryPassword(username).subscribe(() => {
         // Fix because angular is not aware of cognito callbacks
         this.ngZone.run(() => this.temporaryPasswordSend());
-      }, (error) => this.errorUsersProcessor(error));
+      }, (error) => {
+        // Fix because angular is not aware of cognito callbacks
+        this.ngZone.run(() => this.errorUsersProcessor(error));
+      }
+    );
   }
 
   closeAlert() {
@@ -94,8 +118,6 @@ export class AdminComponent implements OnInit {
       name: '',
       firstname: '',
       email: '',
-      region: '',
-      department: '',
       roles: [[ADMIN_ROLE]]
     });
     const modalUser = this.modalService.open(UserFormComponent);
@@ -114,8 +136,6 @@ export class AdminComponent implements OnInit {
       name: u.name,
       firstname: u.firstname,
       email: u.email,
-      region: u.region,
-      department: u.department,
       roles: [u.roles]
     });
     const modalUser = this.modalService.open(UserFormComponent);
