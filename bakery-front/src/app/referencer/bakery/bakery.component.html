@@ -1,0 +1,111 @@
+<app-menu></app-menu>
+<div id="referencer-bakery-container" class="bakery-container bg">
+    <div class="container bakery-sub-container">
+        <div class="row">
+            <div class="container">
+                <div class="float-left">
+                    <h3 id="home-title">{{ 'REFERENCER.BAKERY.TITLE' | translate }}</h3>
+                </div>
+            </div>
+        </div>
+        <div>
+          <form class="form-section pt-4 pb-4 pl-5 pr-5" [formGroup]="bakeryForm" novalidate>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="field w-100" for="bakery-name-input">{{ 'REFERENCER.BAKERY.FORM.NAME' | translate }}</label>
+                    <input class="form-control" type="text" id="bakery-name-input" name="name" formControlName="name" autocomplete="OFF" required>
+                    <div id="required-name-message"
+                         *ngIf="f.name.errors?.required && (f.name.dirty || f.name.touched)"
+                         class="invalid-feedback d-block">{{ 'REFERENCER.BAKERY.FORM.NAME_REQUIRED' | translate }}</div>
+                    <div id="invalid-name-message"
+                         *ngIf="f.name.errors?.pattern && (f.name.dirty || f.name.touched)"
+                         class="invalid-feedback d-block">{{ 'REFERENCER.BAKERY.FORM.NAME_INVALID' | translate }}</div>
+                </div>
+            </div>
+            <div class="form-row">    
+                <div class="form-group">
+                    <label class="field w-100" for="bakery-address-input">{{ 'REFERENCER.BAKERY.FORM.ADDRESS' | translate }}</label>
+                    <input class="form-control" type="text" id="bakery-address-input" name="address" formControlName="address" autocomplete="OFF" required>
+                    <div id="required-address-message"
+                         *ngIf="f.address.errors?.required && (f.address.dirty || f.address.touched)"
+                         class="invalid-feedback d-block">{{ 'REFERENCER.BAKERY.FORM.ADDRESS_REQUIRED' | translate }}</div>
+                    <div id="invalid-address-message"
+                       *ngIf="f.address.errors?.pattern && (f.address.dirty || f.address.touched)"
+                       class="invalid-feedback d-block">{{ 'REFERENCER.BAKERY.FORM.ADDRESS_INVALID' | translate }}</div>
+                </div>
+            </div>
+            <div class="form-row">    
+                <div class="form-group">
+                    <label class="field w-100" for="bakery-zip-input">{{ 'REFERENCER.BAKERY.FORM.ZIP' | translate }}</label>
+                    <input class="form-control" type="text" id="bakery-zip-input" name="zip" formControlName="zip" autocomplete="OFF" required>
+                    <div id="required-zip-message"
+                         *ngIf="f.zip.errors?.required && (f.zip.dirty || f.zip.touched)"
+                         class="invalid-feedback d-block">{{ 'REFERENCER.BAKERY.FORM.ZIP_REQUIRED' | translate }}</div>
+                    <div id="invalid-zip-message"
+                       *ngIf="f.zip.errors?.pattern && (f.zip.dirty || f.zip.touched)"
+                       class="invalid-feedback d-block">{{ 'REFERENCER.BAKERY.FORM.ZIP_INVALID' | translate }}</div>
+                </div>
+                <div class="form-group">
+                    <label class="field w-100" for="bakery-city-input">{{ 'REFERENCER.BAKERY.FORM.CITY' | translate }}</label>
+                    <input class="form-control" type="text" id="bakery-city-input" name="city" formControlName="city" autocomplete="OFF" required>
+                    <div id="required-city-message"
+                         *ngIf="f.city.errors?.required && (f.city.dirty || f.city.touched)"
+                         class="invalid-feedback d-block">{{ 'REFERENCER.BAKERY.FORM.CITY_REQUIRED' | translate }}</div>
+                    <div id="invalid-city-message"
+                       *ngIf="f.city.errors?.pattern && (f.city.dirty || f.city.touched)"
+                       class="invalid-feedback d-block">{{ 'REFERENCER.BAKERY.FORM.CITY_INVALID' | translate }}</div>
+                </div>
+            </div>
+            <div class="form-row">    
+                <div class="form-group">
+                    <label class="field w-100" for="bakery-lat-input">{{ 'REFERENCER.BAKERY.FORM.LAT' | translate }}</label>
+                    <input class="form-control" type="text" id="bakery-lat-input" name="lat" formControlName="lat" autocomplete="OFF" required>
+                    <div id="required-lat-message"
+                         *ngIf="f.lat.errors?.required && (f.lat.dirty || f.lat.touched)"
+                         class="invalid-feedback d-block">{{ 'REFERENCER.BAKERY.FORM.LAT_REQUIRED' | translate }}</div>
+                    <div id="invalid-lat-message"
+                       *ngIf="f.lat.errors?.pattern && (f.lat.dirty || f.lat.touched)"
+                       class="invalid-feedback d-block">{{ 'REFERENCER.BAKERY.FORM.LAT_INVALID' | translate }}</div>
+                </div>
+            </div>
+            <div class="form-row">    
+                <div class="form-group">
+                    <label class="field w-100" for="bakery-lon-input">{{ 'REFERENCER.BAKERY.FORM.LON' | translate }}</label>
+                    <input class="form-control" type="text" id="bakery-lon-input" name="lon" formControlName="lon" autocomplete="OFF" required>
+                    <div id="required-lon-message"
+                         *ngIf="f.lon.errors?.required && (f.lon.dirty || f.lon.touched)"
+                         class="invalid-feedback d-block">{{ 'REFERENCER.BAKERY.FORM.LON_REQUIRED' | translate }}</div>
+                    <div id="invalid-lon-message"
+                       *ngIf="f.lon.errors?.pattern && (f.lon.dirty || f.lon.touched)"
+                       class="invalid-feedback d-block">{{ 'REFERENCER.BAKERY.FORM.LON_INVALID' | translate }}</div>
+                </div>
+            </div>
+            <div class="form-row">    
+                <div class="form-group">
+                    <label class="field w-100" for="bakery-phone-input">{{ 'REFERENCER.BAKERY.FORM.PHONE' | translate }}</label>
+                    <input class="form-control" type="text" id="bakery-phone-input" name="phone" formControlName="phone" autocomplete="OFF" required>
+                    <div id="required-phone-message"
+                         *ngIf="f.phone.errors?.required && (f.phone.dirty || f.phone.touched)"
+                         class="invalid-feedback d-block">{{ 'REFERENCER.BAKERY.FORM.PHONE_REQUIRED' | translate }}</div>
+                    <div id="invalid-phone-message"
+                       *ngIf="f.phone.errors?.pattern && (f.phone.dirty || f.phone.touched)"
+                       class="invalid-feedback d-block">{{ 'REFERENCER.BAKERY.FORM.PHONE_INVALID' | translate }}</div>
+                </div>
+            </div>
+            <div class="form-row">    
+                <div class="form-group">
+                    <label class="field w-100" for="bakery-star-input">{{ 'REFERENCER.BAKERY.FORM.STAR' | translate }}</label>
+                    <input class="form-control" type="text" id="bakery-star-input" name="star" formControlName="star" autocomplete="OFF" required>
+                    <div id="required-star-message"
+                         *ngIf="f.star.errors?.required && (f.star.dirty || f.star.touched)"
+                         class="invalid-feedback d-block">{{ 'REFERENCER.BAKERY.FORM.STAR_REQUIRED' | translate }}</div>
+                    <div id="invalid-star-message"
+                       *ngIf="f.star.errors?.pattern && (f.star.dirty || f.star.touched)"
+                       class="invalid-feedback d-block">{{ 'REFERENCER.BAKERY.FORM.STAR_INVALID' | translate }}</div>
+                </div>
+            </div>
+            <button id="add-bakery-button" class="btn btn-primary ml-auto" [disabled]="bakeryForm.invalid || bakeryForm.invalid" (click)="addBakery()">{{ 'REFERENCER.BAKERY.FORM.VALIDATE' | translate }}</button>
+          </form>
+        </div>
+    </div>
+</div>

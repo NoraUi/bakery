@@ -1,5 +1,5 @@
+import { Type } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-
 import { ReferentialService } from './referential.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
@@ -19,8 +19,8 @@ describe('ReferentialService', () => {
       ]
     });
 
-    httpMock = TestBed.get(HttpTestingController);
-    service = TestBed.get(ReferentialService);
+    httpMock = TestBed.get(HttpTestingController as Type<HttpTestingController>);
+    service = TestBed.get(ReferentialService as Type<ReferentialService>);
   });
 
   it('should be created', () => {

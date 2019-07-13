@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { AppConfigService } from '../services/app-config.service';
 import { of } from 'rxjs';
 import { SessionService } from '../../shared/services/authentication/session.service';
-import { User } from '../../model/user';
+import { User } from '../../model/user.model';
 
 describe('ErrorInterceptor', () => {
   let httpMock: HttpTestingController;

@@ -12,8 +12,10 @@ import { LoginService } from './services/authentication/login.service';
 import { RoleGuardService } from './guards/role-guard.service';
 import { UserService } from './services/user/user.service';
 import { ReferentialService } from './services/referentials/referential.service';
+import { MapService } from './services/map/map.service';
 import { HomeRedirectGuardService } from './guards/home-redirect-guard.service';
 import { OneClickOnlyButtonDirective } from './directives/one-click-only-button/one-click-only-button.directive';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { OneClickOnlyButtonDirective } from './directives/one-click-only-button/
     CommonModule,
     FormsModule,
     NgbModule,
-    RouterModule
+    RouterModule,
+    LeafletModule.forRoot()
   ],
   exports: [
     TranslateModule,
@@ -42,6 +45,7 @@ import { OneClickOnlyButtonDirective } from './directives/one-click-only-button/
     HomeRedirectGuardService,
     UserService,
     ReferentialService,
+    MapService,
     LoginService,
     { provide: NgbDateAdapter, useClass: NgbDateNativeAdapter },
   ]

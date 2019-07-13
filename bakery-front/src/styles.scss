@@ -19,6 +19,18 @@ body, html {
   background-size: cover;
 }
 
+.bakery-container {
+  padding-top: 25px;
+  min-height: calc(100% - 93px);
+}
+
+.bakery-sub-container {
+  padding-top: 25px;
+  background-color: #fff;
+  min-height: calc(100% - 93px);
+  height: calc(100% - 93px);
+}
+
 /* spinner */
 a {
   cursor: pointer

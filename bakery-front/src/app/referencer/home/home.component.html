@@ -1,3 +1,77 @@
-<p>
-  home works!
-</p>
+<app-menu></app-menu>
+<div id="referencer-home-container" class="bakery-container bg">
+    <div class="container bakery-sub-container">
+        <div class="row">
+            <div class="container">
+                <div class="float-left">
+                    <h3 id="home-title">{{ 'REFERENCER.HOME.TITLE' | translate }}</h3>
+                </div>
+                <div class="float-right">
+                    <a id="new-sheet-button" class="btn btn-primary" routerLink="/referencer/bakery">{{ 'REFERENCER.HOME.CREATE_BAKERY_BUTTON' | translate }}</a>
+                </div>
+            </div>
+        </div>
+        <div id="loader" class="container" *ngIf="loading">
+          <div class="spinner-preloader position-relative">
+            <div id="loader-message" class="spinner-subtitle position-relative">{{ 'ADMIN.LOADING' | translate }}</div>
+            <div id="loader-icon" class="spinner-loader position-relative mt-3"></div>
+          </div>
+        </div>
+        <div *ngIf="!loading">
+          <div class="container" *ngIf="totalBakeries < 1">
+            <div class="row offi-sub-container align-items-center no-results-block">
+              <div class="w-100">
+                <div class="w-100">
+                  <span id="no-results-image" class="fas fa-ban"></span>
+                </div>
+                <div id="no-results-message" class="w-100 referencer-not-found">{{ 'REFERENCER.HOME.BAKERY_NOT_FOUND' | translate }}</div>
+                <div id="no-results-try-again-message" class="container referencer-not-found-try-again">{{ 'REFERENCER.HOME.BAKERY_NOT_FOUND_TRY_AGAIN' | translate }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive" *ngIf="totalBakeries > 0">
+            <table id="referencers-table" class="table table-hover">
+            <thead class="thead-light">
+            <tr>
+              <th>{{ 'REFERENCER.HOME.RESULTS.NAME' | translate }}</th>
+              <th>{{ 'REFERENCER.HOME.RESULTS.ADDRESS' | translate }}</th>
+              <th>{{ 'REFERENCER.HOME.RESULTS.PHONE' | translate }}</th>
+              <th>{{ 'REFERENCER.HOME.RESULTS.STAR' | translate }}</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let bakery of bakeries">
+                <td
+                class="font-weight-bold" [id]="bakery.id + '-referencer-person'">{{ bakery.name }}</td>
+                <td>{{ bakery.address }} {{ bakery.zip }} {{ bakery.city }}</td>
+                <td>{{ bakery.phone }}</td>
+                <td>{{ bakery.star }}</td>
+                <td class="text-center"><a [id]="bakery.id + '-referencer-link'" [routerLink]="'/referencer/bakery/'+bakery.id"><em
+                class="fa fa-angle-right"></em></a></td>
+            </tr>
+            </tbody>
+            </table>
+            <div class="mb-4">
+            <ngb-pagination id="referencers-pagination" class="d-flex justify-content-end" [(page)]="page" [pageSize]="pageSize"
+                            [collectionSize]="totalBakeries" (pageChange)="search()">
+                <ng-template ngbPaginationPrevious><em id="referencers-previous-page-icon" class="fa fa-angle-left"></em></ng-template>
+                <ng-template ngbPaginationNext><em id="referencers-next-page-icon" class="fa fa-angle-right"></em></ng-template>
+            </ngb-pagination>
+            </div>
+          </div>
+
+          <div style="height: 300px;"
+               leaflet
+               [leafletLayers]="layers"
+               [leafletLayersControl]="layersControl"
+               [leafletFitBounds]="fitBounds"
+               (leafletMapReady)="onMapReady($event);"
+               [leafletOptions]="options">
+          </div>
+
+        </div>
+ 
+    </div>
+</div>
+

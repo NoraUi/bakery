@@ -57,7 +57,8 @@
           "FORCE_CHANGE_PASSWORD": "Mot de passe à changer"
         },
         "ERROR": {
-          "CREATION_INTEGRITY_ERROR": "L'utilisateur ne peut pas être créé (Identifiant déjà utilisé)."
+          "CREATION_INTEGRITY_ERROR": "L'utilisateur ne peut pas être créé (Identifiant déjà utilisé).",
+          "UNKNOWN_ERROR": "Erreur inconnue."
         },
         "USER_FORM": {
           "TITLE": "Création d'un utilisateur",
@@ -65,7 +66,8 @@
           "EDIT": "Modifier",
           "CANCEL": "Annuler"
         }
-      }
+      },
+      "LOADING": "Mise à jour en cours..."
     },
     "404": {
       "TITLE": "La page que vous avez demandée n'existe pas."
@@ -76,5 +78,58 @@
     "500": {
       "TITLE": "Une erreur est survenue.",
       "RETRY": "Veuillez réessayer plus tard."
+    },
+    "AWS": {
+      "COGNITO": {
+        "GENERAL": "Erreur de webservices Cognito.",
+        "USER_ALREADY_EXISTS": "L'utilisateur existe déjà dans le système.",
+        "TEMPORARY_PASSWORD_HAS_BEEN_RETURNED_TO_THE_USER": "Le mot de passe temporaire a été renvoyé vers l'utilisateur."
+      }
+    },
+    "REFERENCER": {
+      "HOME": {
+        "TITLE": "Référencement des boulangeries",
+        "CREATE_BAKERY_BUTTON": "Nouvelle boulangerie",
+        "BAKERY_NOT_FOUND": "Aucune boulangerie ne correspond à votre recherche.",
+        "BAKERY_NOT_FOUND_TRY_AGAIN": "Essayez de nouveau avec d'autres critères de recherche.",
+        "RESULTS": {
+          "NAME": "Nom",
+          "ADDRESS": "Adresse",
+          "ZIP": "Code postal",
+          "CITY": "Ville",
+          "PHONE": "Téléphone",
+          "STAR": "Note"
+        }
+      },
+      "BAKERY": {
+        "TITLE": "Nouvelle boulangerie",
+        "FORM": {
+          "NAME": "Nom",
+          "NAME_REQUIRED":"Le nom est obligatoire",
+          "NAME_INVALID":"Le format du nom est invalide",
+          "ADDRESS": "Adresse",
+          "ADDRESS_REQUIRED":"L'adresse est obligatoire",
+          "ADDRESS_INVALID":"Le format de l'adresse est invalide",
+          "ZIP": "Code postal",
+          "ZIP_REQUIRED":"Le code postal est obligatoire",
+          "ZIP_INVALID":"Le format du code postal doit contenir 5 chiffres",
+          "CITY": "Ville",
+          "CITY_REQUIRED":"Le nom de la ville est obligatoire",
+          "CITY_INVALID":"Le format du nom de la ville est invalide",
+          "LAT": "Latitude",
+          "LAT_REQUIRED":"La latitude est obligatoire",
+          "LAT_INVALID":"Le format de la latitude est invalide",
+          "LON": "Longitude",
+          "LON_REQUIRED":"La longitude est obligatoire",
+          "LON_INVALID":"Le format de la longitude est invalide",
+          "PHONE": "Téléphone",
+          "PHONE_REQUIRED":"Le numéro de téléphone est obligatoire",
+          "PHONE_INVALID":"Le numéro de téléphone doit contenir 10 chiffres",
+          "STAR": "Note",
+          "STAR_REQUIRED":"La note est obligatoire",
+          "STAR_INVALID":"Le format de la note est invalide. (Exemple: 4.5)",
+          "VALIDATE": "Valider"
+        }
+      }
     }
 }

@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { User } from 'src/app/model/user.model';
 import { Observable } from 'rxjs';
 import { AwsService } from '../aws/aws.service';
@@ -12,7 +12,7 @@ export class SessionService {
   private currentUserKey = 'currentUser';
   private storage: Storage = localStorage;
 
-  constructor(private ngZone: NgZone, private awsService: AwsService) { }
+  constructor(private awsService: AwsService) { }
 
   storeUserInfo(user: User) {
     this.storage.setItem(this.currentUserKey, JSON.stringify(user));
