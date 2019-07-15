@@ -9,7 +9,7 @@ export class ReferentialService {
   constructor(private http: HttpClient) { }
 
   getProfiles(): Observable<string[]> {
-    return this.http.get<any>('/assets/data/profiles.json').pipe(map((data) => data.profiles));
+    return this.http.get<any>('./assets/data/profiles.json').pipe(map((data) => data.profiles));
   }
 
 }

@@ -37,7 +37,7 @@ describe('ReferentialService', () => {
       expect(res[2]).toEqual('CONTRIBUTOR');
     });
 
-    const req = httpMock.expectOne({ url: '/assets/data/profiles.json', method: 'GET' });
+    const req = httpMock.expectOne({ url: './assets/data/profiles.json', method: 'GET' });
     req.flush({
       profiles: ['ADMIN', 'REFERENCER', 'CONTRIBUTOR']
     });
