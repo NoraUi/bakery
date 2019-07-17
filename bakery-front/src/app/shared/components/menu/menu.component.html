@@ -10,7 +10,7 @@
             <div class="menu-drop-container">
                 <ul class="navbar-nav navbar-right menu-drop">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="menu-dropdown" data-toggle="dropdown"><span>{{ user.firstname }}<br/>{{ user.name }}</span></a>
+                        <a class="nav-link dropdown-toggle" id="account-menu" data-toggle="dropdown"><span>{{ user.firstname }}<br/>{{ user.name }}</span></a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" id="referencer-menu-item" *ngIf='isReferencer' routerLink="/referencer/home">{{ 'MENU.REFERENCER' | translate }}</a>
                             <a class="dropdown-item" id="contributor-menu-item" *ngIf='isContributor' routerLink="/contributor/home">{{ 'MENU.CONTRIBUTOR' | translate }}</a>
