@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { LoginService } from '../../shared/services/authentication/login.service';
+import { AppConfigService } from 'src/app/core/services/app-config.service';
 
 @Component({
   selector: 'app-login',
@@ -15,11 +16,13 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
               private translate: TranslateService,
-              private loginService: LoginService) {
+              private loginService: LoginService,
+              private appConfigService: AppConfigService) {
   }
 
   ngOnInit() {
     this.loginService.logout();
+    this.appConfigService.getConfig().subscribe();
   }
 
   login() {
