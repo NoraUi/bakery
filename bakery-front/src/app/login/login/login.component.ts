@@ -47,6 +47,10 @@ export class LoginComponent implements OnInit {
       this.translate.get('LOGIN.USER_NOT_FOUND').subscribe((text: string) => {
         this.errMsg = text;
       });
+    } else if (err.reason === 'USER_NOT_CONFORM_POLICY') {
+      this.translate.get('LOGIN.USER_NOT_CONFORM_POLICY').subscribe((text: string) => {
+        this.errMsg = text;
+      });
     } else if (err.reason === 'PASSWORD_NOT_CONFORM_POLICY' || err.reason === 'FORCE_CHANGE_PASSWORD') {
       this.router.navigate(['/account/changepassword']);
     } else if (err.reason === 'RESET_PASSWORD') {

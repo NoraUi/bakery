@@ -5,7 +5,8 @@
       "PASSWORD": "Mot de passe",
       "SUBMIT": "Se connecter",
       "FORGOT_PASSWORD": "Mot de passe oublié ?",
-      "USER_NOT_FOUND": "Nom d'utilisateur ou mot de passe incorrect.",
+      "USER_NOT_FOUND": "Identifiant ou mot de passe incorrect.",
+      "USER_NOT_CONFORM_POLICY": "Identifiant incorrect.",
       "FORCE_CHANGE_PASSWORD": "Vous devez changer votre mot de passe.",
       "PASSWORD_NOT_CONFORM_POLICY": "Format du mot de passe incorrect",
       "404": "Erreur de connexion aux webservices"
@@ -18,7 +19,7 @@
       "NEW_PASSWORD": "Nouveau mot de passe",
       "CONFIRM_PASSWORD": "Confirmation du nouveau mot de passe",
       "SUBMIT": "Valider",
-      "USER_NOT_FOUND": "Nom d'utilisateur ou mot de passe incorrect.",
+      "USER_NOT_FOUND": "Identifiant ou mot de passe incorrect.",
       "404": "Erreur de connexion aux webservices",
       "RESET_PASSWORD_SENT": "Un email vous a été envoyé pour réinitialiser votre mot de passe",
       "CONFIRM_PASSWORD_DO_NOT_MATCH_NEW_PASSWORD": "La confirmation du mot de passe doit correspondre au nouveau mot de passe saisi précédemment."

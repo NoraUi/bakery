@@ -331,6 +331,10 @@ export class AwsService {
                 username: user
               }
             });
+          } else if (err.code === 'InvalidParameterException') {
+            subscriber.error({
+              reason: 'USER_NOT_CONFORM_POLICY'
+            });
           } else {
             subscriber.error({
               reason: 'USER_NOT_FOUND'
@@ -502,11 +506,11 @@ export class AwsService {
 
   resetPassword(user: string): Observable<void> {
     return this.getAwsConfig().pipe(mergeMap(([poolData, region, identityPool]) => {
-      return this.restPasswordUserPool(user, poolData);
+      return this.resetPasswordUserPool(user, poolData);
     }));
   }
 
-  private restPasswordUserPool(user: string, poolData: ICognitoUserPoolData): Observable<void> {
+  private resetPasswordUserPool(user: string, poolData: ICognitoUserPoolData): Observable<void> {
     const userPool = new CognitoUserPool(poolData);
     const userData = {
       Username: user,
@@ -519,7 +523,13 @@ export class AwsService {
           subscriber.next();
         },
         onFailure: err => {
-          subscriber.error(err);
+          if (err.name === 'InvalidParameterException' || err.name === 'UserNotFoundException') {
+            subscriber.error({
+              reason: 'USER_NOT_CONFORM_POLICY'
+            });
+          } else {
+            subscriber.error(err);
+          }
         }
       });
     });

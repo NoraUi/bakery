@@ -16,11 +16,11 @@
 						<input class="form-control" id="password" name="password" type="password" #password="ngModel" required [(ngModel)]="model.password">
 					</div>
 					<button  class="btn btn-primary btn-block" [disabled]="!formLogin.valid" type="submit">{{ 'LOGIN.SUBMIT' | translate }}</button>
-					<div class="login-forgot-password">
-						<button class="btn btn-link" (click)="resetPassword()" id="rest-password-link">{{ 'LOGIN.FORGOT_PASSWORD' | translate }}</button>
-					</div>
 				</div>
 			</form>
+			<div class="login-forgot-password">
+				<button class="btn btn-link" (click)="resetPassword()" id="rest-password-link">{{ 'LOGIN.FORGOT_PASSWORD' | translate }}</button>
+			</div>
 		</div>
 	</div>
 </div>
