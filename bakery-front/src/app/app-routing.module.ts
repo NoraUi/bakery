@@ -12,6 +12,7 @@ export const routes: Routes = [
   { path: 'contributor', loadChildren: './contributor/contributor.module#ContributorModule', pathMatch: 'prefix'},
   { path: 'admin', loadChildren: './admin/admin.module#AdminModule', pathMatch: 'full'},
   { path: 'error', loadChildren: './error/error.module#ErrorModule', pathMatch: 'prefix'},
+  { path: 'public', loadChildren: './public/public.module#PublicModule'},
   { path: '**', redirectTo: 'error/404'}
 ];
 
