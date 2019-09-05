@@ -71,6 +71,11 @@ cd contributor
 touch contributor-routing.module.ts
 ng g component home
 cd ..
+ng g module public
+cd public
+touch public-routing.module.ts
+ng g component home
+cd ..
 ng g module core
 cd core
 mkdir global-error-handler
