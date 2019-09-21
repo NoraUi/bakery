@@ -38,18 +38,6 @@ export class HomeComponent implements OnInit {
     this.count = this.count + 1;
   }
 
-  /*displayMenu(e) {
-    if (!$(this).next().hasClass('show')) {
-      $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
-    }
-    let $subMenu = $(this).next(".dropdown-menu");
-    $subMenu.toggleClass('show');
-    $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
-      $('.dropdown-submenu .show').removeClass("show");
-    });
-    return false;
-  });*/
-
   convertArrayOfObjectsToCSV(args) {
     let result;
     let ctr;
