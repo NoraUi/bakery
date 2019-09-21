@@ -99,6 +99,6 @@ export class HomeComponent implements OnInit {
     link.setAttribute('href', data);
     link.setAttribute('download', filename);
     link.click();
-  } 
+  }
 
 }
