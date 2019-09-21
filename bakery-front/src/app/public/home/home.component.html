@@ -10,18 +10,15 @@
 					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown link</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 						<li><a class="dropdown-item" href="#">Action</a></li>
 						<li><a class="dropdown-item" href="#">Another action</a></li>
-						<li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownSubMenu">Submenu</a>
+						<li class="dropdown-submenu">
+							<a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownSubMenu" data-toggle="dropdown">Submenu</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="#">Submenu action</a></li>
 								<li><a class="dropdown-item" href="#">Another submenu action</a></li>
-
-
 								<li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownSubSubMenu1">Subsubmenu</a>
 									<ul class="dropdown-menu">
 										<li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
@@ -67,8 +64,8 @@
 					<option value="Paris">Paris</option>
 				</select>
 			</p>
-			<p style="height: 150px;">This is a onclick by js test: <a onclick="alert('OK');alertDate();" style="display:block;color: #FE7F88;background-image: url('./assets/Smile.png'); width: 150px; height: 150px;" name="smilejs" title="smilejs"></a></p>
-			<p style="height: 150px;">This is a onclick test: <a onclick="alert('OK');alertDate();" style="display:block;color: #FE7F88;background-image: url('./assets/Smile.png'); width: 150px; height: 150px;" name="smile" title="smile"> </a></p>
+			<p style="height: 150px;">This is a onclick by js test: <a (click)="alertDate();" style="display:block;color: #FE7F88;background-image: url('./assets/Smile.png'); width: 150px; height: 150px;" name="smilejs" title="smilejs"></a></p>
+			<p style="height: 150px;">This is a onclick test: <a (click)="alertDate();" style="display:block;color: #FE7F88;background-image: url('./assets/Smile.png'); width: 150px; height: 150px;" name="smile" title="smile"> </a></p>
 		</div>
 		<div class="col-3">
 			<h1 id="display_none_title" style="display: none">display none for title.</h1>
@@ -78,87 +75,8 @@
 				<INPUT type="radio" name="rate" value="week-end"> WE rate
 			</p>
 			<p>This is a button: <input id="submit" type="submit" class="btn btn-outline-info"></p>
-			<input id="input_current_date" type="text" class="btn btn-outline-info">
+			<input ngModel="{{count}}" id="input_current_date" type="text" class="btn btn-outline-info">
 
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	<script type="text/javascript">  
-		var count = 0;
-		document.getElementById("input_current_date").value = count;
-		function alertDate() {
-			count = count + 1;
-			document.getElementById("input_current_date").value = count;
-		}
-		$('.dropdown-menu a.dropdown-toggle').on('mouseover', function(e) {
-			if (!$(this).next().hasClass('show')) {
-				$(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
-			}
-			var $subMenu = $(this).next(".dropdown-menu");
-			$subMenu.toggleClass('show');
-			$(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
-				$('.dropdown-submenu .show').removeClass("show");
-			});
-			return false;
-		});
-		
-		var stockData = [
-			{
-				Symbol: "AAPL",
-				Company: "Apple Inc.",
-				Price: "132.54"
-			},
-			{
-				Symbol: "INTC",
-				Company: "Intel Corporation",
-				Price: "33.45"
-			},
-			{
-				Symbol: "GOOG",
-				Company: "Google Inc",
-				Price: "554.52"
-			},
-		];
-		function convertArrayOfObjectsToCSV(args) {
-			var result, ctr, keys, columnDelimiter, lineDelimiter, data;
-			data = args.data || null;
-			if (data == null || !data.length) {
-				return null;
-			}
-			columnDelimiter = args.columnDelimiter || ';';
-			lineDelimiter = args.lineDelimiter || '\n';
-			keys = Object.keys(data[0]);
-			result = '';
-			result += keys.join(columnDelimiter);
-			result += lineDelimiter;
-			data.forEach(function(item) {
-				ctr = 0;
-				keys.forEach(function(key) {
-					if (ctr > 0) result += columnDelimiter;
-					result += item[key];
-					ctr++;
-				});
-				result += lineDelimiter;
-			});
-			return result;
-		}
-		function exportCSV(args) {
-			var data, filename, link;
-			var csv = convertArrayOfObjectsToCSV({
-				data: stockData
-			});
-			if (csv == null) return;
-			filename = args.filename || 'export.csv';
-			if (!csv.match(/^data:text\/csv/i)) {
-				csv = 'data:text/csv;charset=utf-8,' + csv;
-			}
-			data = encodeURI(csv);
-			link = document.createElement('a');
-			link.setAttribute('href', data);
-			link.setAttribute('download', filename);
-			link.click();
-		} 
-	</script>
 </div>  
