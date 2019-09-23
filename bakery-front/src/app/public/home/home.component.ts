@@ -68,7 +68,8 @@ export class HomeComponent implements OnInit {
     });
     return result;
   }
-   exportCSV(args) {
+
+  exportCSV(args) {
     let data;
     let filename;
     let link;

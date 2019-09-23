@@ -56,7 +56,7 @@
 		</div>
 		<div class="col-3">
 			<p>This is a file input field: <input id="file_input_text" type="file"><input id="send" type="submit" onclick="document.getElementById('input_text').value=document.getElementById('file_input_text').value.substr(-8);" value="Send" class="btn btn-outline-info"></p>
-			<p>This is a download CSV file button sample: <input id="exportCSV" type="submit" onclick="exportCSV({ filename: 'stock-data.csv' });" value="Export CSV" class="btn btn-outline-info"></p>
+			<p>This is a download CSV file button sample: <input id="exportCSV" type="submit" (click)="exportCSV({ filename: 'stock-data.csv' });" value="Export CSV" class="btn btn-outline-info"></p>
 			<p>This is a select:
 				<select id="input_select">
 					<option value="none"></option>
