@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-home',
@@ -70,24 +71,16 @@ export class HomeComponent implements OnInit {
   }
 
   exportCSV(args) {
-    let data;
-    let filename;
-    let link;
-    let csv = this.convertArrayOfObjectsToCSV({
+    const csv = this.convertArrayOfObjectsToCSV({
       data: this.stockData
     });
     if (csv == null) {
       return;
     }
-    filename = args.filename || 'export.csv';
-    if (!csv.match(/^data:text\/csv/i)) {
-      csv = 'data:text/csv;charset=utf-8,' + csv;
-    }
-    data = encodeURI(csv);
-    link = document.createElement('a');
-    link.setAttribute('href', data);
-    link.setAttribute('download', filename);
-    link.click();
+    const filename = args.filename || 'export.csv';
+    console.log(csv);
+    const blob = new Blob([csv]);
+    saveAs(blob, filename);
   }
 
 }
