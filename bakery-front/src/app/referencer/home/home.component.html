@@ -31,26 +31,26 @@
           </div>
           <div class="table-responsive" *ngIf="totalBakeries > 0">
             <table id="referencers-table" class="table table-hover">
-            <thead class="thead-light">
-            <tr>
-              <th>{{ 'REFERENCER.HOME.RESULTS.NAME' | translate }}</th>
-              <th>{{ 'REFERENCER.HOME.RESULTS.ADDRESS' | translate }}</th>
-              <th>{{ 'REFERENCER.HOME.RESULTS.PHONE' | translate }}</th>
-              <th>{{ 'REFERENCER.HOME.RESULTS.STAR' | translate }}</th>
-              <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let bakery of bakeries">
-                <td
-                class="font-weight-bold" [id]="bakery.id + '-referencer-person'">{{ bakery.name }}</td>
-                <td>{{ bakery.address }} {{ bakery.zip }} {{ bakery.city }}</td>
-                <td>{{ bakery.phone }}</td>
-                <td>{{ bakery.star }}</td>
-                <td class="text-center"><a [id]="bakery.id + '-referencer-link'" [routerLink]="'/referencer/bakery/'+bakery.id"><em
-                class="fa fa-angle-right"></em></a></td>
-            </tr>
-            </tbody>
+              <thead class="thead-light">
+              <tr>
+                <th id="referencers-table-name">{{ 'REFERENCER.HOME.RESULTS.NAME' | translate }}</th>
+                <th id="referencers-table-address">{{ 'REFERENCER.HOME.RESULTS.ADDRESS' | translate }}</th>
+                <th id="referencers-table-phone">{{ 'REFERENCER.HOME.RESULTS.PHONE' | translate }}</th>
+                <th id="referencers-table-start">{{ 'REFERENCER.HOME.RESULTS.STAR' | translate }}</th>
+                <th id="referencers-table-action"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let bakery of bakeries">
+                  <td
+                  class="font-weight-bold" [id]="bakery.id + '-referencer-person'">{{ bakery.name }}</td>
+                  <td>{{ bakery.address }} {{ bakery.zip }} {{ bakery.city }}</td>
+                  <td>{{ bakery.phone }}</td>
+                  <td>{{ bakery.star }}</td>
+                  <td class="text-center"><a [id]="bakery.id + '-referencer-link'" [routerLink]="'/referencer/bakery/'+bakery.id"><em
+                  class="fa fa-angle-right"></em></a></td>
+              </tr>
+              </tbody>
             </table>
             <div class="mb-4">
             <ngb-pagination id="referencers-pagination" class="d-flex justify-content-end" [(page)]="page" [pageSize]="pageSize"
@@ -61,7 +61,7 @@
             </div>
           </div>
 
-          <div style="height: 300px;"
+          <div style="height:400px;"
                leaflet
                [leafletLayers]="layers"
                [leafletLayersControl]="layersControl"
@@ -74,4 +74,3 @@
  
     </div>
 </div>
-
