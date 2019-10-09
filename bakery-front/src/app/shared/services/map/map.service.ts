@@ -27,7 +27,7 @@ export class MapService {
   };
   private LAYER_GM_SATELLITE = {
     id: 'googlesatellitemaps',
-    name: 'Satellite',
+    name: 'Google Satellite',
     enabled: false,
     layer: tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
       maxZoom: 20,
@@ -39,10 +39,29 @@ export class MapService {
     id: 'googlestreetmaps',
     name: 'Terrain',
     enabled: false,
-    layer: tileLayer('http://{s}.google.com/vt/lyrs=t&x={x}&y={y}&z={z}', {
+    layer: tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
       maxZoom: 20,
       attribution: 'Terrain',
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    })
+  };
+  private LAYER_IGN_SATELLITE = {
+    id: 'ignsatelite',
+    name: 'IGN Satelite',
+    enabled: false,
+    layer: tileLayer('https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/geoportail/wmts?layer=ORTHOIMAGERY.ORTHOPHOTOS&style=normal&tilematrixset=PM&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fjpeg&tilematrixset=PM&tilematrix={z}&tilecol={x}&tilerow={y}', {
+      maxZoom: 20,
+      attribution: 'IGN'
+    })
+  };
+
+  private LAYER_IGN_CADASTRAL = {
+    id: 'igncadastre',
+    name: 'Terrain',
+    enabled: false,
+    layer: tileLayer('https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/geoportail/wmts?layer=CADASTRALPARCELS.PARCELS&style=bdparcellaire&tilematrixset=PM&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fpng&tilematrixset=PM&tilematrix={z}&tilecol={x}&tilerow={y}', {
+      maxZoom: 20,
+      attribution: 'Cadastre'
     })
   };
 
@@ -50,17 +69,19 @@ export class MapService {
   layersControl: any = {
     baseLayers: {
       Route: this.LAYER_GM_STREET.layer,
-      Satellite: this.LAYER_GM_SATELLITE.layer,
+      Google: this.LAYER_GM_SATELLITE.layer,
+      IGN: this.LAYER_IGN_SATELLITE.layer,
       Terrain: this.LAYER_GM_TERRAIN.layer,
       OpenStreetMap: this.LAYER_OSM.layer
-    }
+    },
+    overlays: {Cadastre: this.LAYER_IGN_CADASTRAL.layer}
   };
   fitBounds: LatLngBounds;
 
   model = new LeafletLayers(
-    [this.LAYER_GM_STREET, this.LAYER_GM_SATELLITE, this.LAYER_GM_TERRAIN, this.LAYER_OSM ],
+    [this.LAYER_GM_STREET, this.LAYER_GM_SATELLITE, this.LAYER_GM_TERRAIN, this.LAYER_OSM],
     this.LAYER_GM_STREET.id,
-    []
+    [this.LAYER_IGN_CADASTRAL]
   );
 
   constructor() {}
