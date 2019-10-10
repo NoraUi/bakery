@@ -1,0 +1,6 @@
+{
+  "name": "postBakery_lambda",
+  "dependencies": {
+    "uuid": "^3.3.2"
+  }
+}
