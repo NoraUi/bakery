@@ -46,24 +46,7 @@ export class MapService {
     })
   };
   
-  ign = 'https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/geoportail/wmts?';
-  ignEnd = '&tilematrixset=PM&tilematrix={z}&tilecol={x}&tilerow={y}';
-  ignSat = this.ign + 'layer=ORTHOIMAGERY.ORTHOPHOTOS';
-  ignCad = this.ign + 'layer=CADASTRALPARCELS.PARCELS';
-  
-  this.ignSat = this.ignSat + '&style=normal';
-  this.ignSat = this.ignSat + '&tilematrixset=PM';
-  this.ignSat = this.ignSat + '&Service=WMTS';
-  this.ignSat = this.ignSat + '&Request=GetTile';
-  this.ignSat = this.ignSat + '&Version=1.0.0';
-  this.ignSat = this.ignSat + '&Format=image%2Fjpeg' + this.ignEnd;
-  
-  this.ignCad = this.ignCad + '&style=bdparcellaire';
-  this.ignCad = this.ignCad + '&tilematrixset=PM';
-  this.ignCad = this.ignCad + '&Service=WMTS';
-  this.ignCad = this.ignCad + '&Request=GetTile';
-  this.ignCad = this.ignCad + '&Version=1.0.0';
-  this.ignCad = this.ignCad + '&Format=image%2Fpng' + this.ignEnd;
+ 
 
   private LAYER_IGN_SATELLITE = {
     id: 'ignsatelite',
@@ -104,7 +87,26 @@ export class MapService {
     [this.LAYER_IGN_CADASTRAL]
   );
 
-  constructor() {}
+  constructor() {
+    let ign : string = 'https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/geoportail/wmts?';
+    let ignEnd : string = '&tilematrixset=PM&tilematrix={z}&tilecol={x}&tilerow={y}';
+    let ignSat : string = ign + 'layer=ORTHOIMAGERY.ORTHOPHOTOS';
+    let ignCad : string = ign + 'layer=CADASTRALPARCELS.PARCELS';
+    
+    ignSat = ignSat + '&style=normal';
+    ignSat = ignSat + '&tilematrixset=PM';
+    ignSat = ignSat + '&Service=WMTS';
+    ignSat = ignSat + '&Request=GetTile';
+    ignSat = ignSat + '&Version=1.0.0';
+    ignSat = ignSat + '&Format=image%2Fjpeg' + ignEnd;
+     
+    ignCad = ignCad + '&style=bdparcellaire';
+    ignCad = ignCad + '&tilematrixset=PM';
+    ignCad = ignCad + '&Service=WMTS';
+    ignCad = ignCad + '&Request=GetTile';
+    ignCad = ignCad + '&Version=1.0.0';
+    ignCad = ignCad + '&Format=image%2Fpng' + ignEnd;
+  }
 
   apply(): void {
     // Get the active base layer

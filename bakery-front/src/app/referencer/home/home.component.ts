@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BakeryService } from 'src/app/shared/services/bakery/bakery.service';
 import { Router } from '@angular/router';
-import { Layer, tileLayer, Map, control, latLng, LatLngBounds, latLngBounds, icon, marker } from 'leaflet';
+import { Map, control, LatLngLiteral, latLngBounds, icon, marker } from 'leaflet';
 import * as L from 'leaflet';
 import { ZOOM, ATTRIBUTION } from 'src/app/shared/constant/app.constants';
 import { MapService } from 'src/app/shared/services/map/map.service';
@@ -80,7 +80,14 @@ export class HomeComponent implements OnInit {
         this.totalBakeries = page.ScannedCount;
         const markers = this.bakeries.map((m: Bakery) => this.markersMap(m) );
         this.mapService.model.overlayLayers = this.mapService.model.overlayLayers.concat(markers);
-        this.mapService.fitBounds = latLngBounds((this.bakeries.map((bakery: Bakery) => [ bakery.lat, bakery.lon] )));
+        if (this.bakeries.length == 0) {
+          // Paris is lat: 48.8534 and lon: 2.3488
+          this.mapService.fitBounds = latLngBounds([ Number(48.8534) + 0.5, Number(2.3488) + 0.5 ], [ Number(48.8534) - 0.5, Number(2.3488) - 0.5 ]);
+        } else if (this.bakeries.length == 1) {
+          this.mapService.fitBounds = latLngBounds([ Number(this.bakeries[0].lat) + 0.5, Number(this.bakeries[0].lon) + 0.5 ], [ Number(this.bakeries[0].lat) - 0.5, Number(this.bakeries[0].lon) - 0.5 ]);
+        } else {
+          this.mapService.fitBounds = latLngBounds((this.bakeries.map((bakery: Bakery) => [ bakery.lat, bakery.lon] )));
+        }
         this.mapService.apply();
         this.loading = false;
       },
