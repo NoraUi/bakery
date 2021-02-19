@@ -45,11 +45,12 @@ export class MapService {
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
     })
   };
+  ign = 'https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/geoportail/wmts?';
   private LAYER_IGN_SATELLITE = {
     id: 'ignsatelite',
     name: 'IGN Satelite',
     enabled: false,
-    layer: tileLayer('https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/geoportail/wmts?layer=ORTHOIMAGERY.ORTHOPHOTOS&style=normal&tilematrixset=PM&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fjpeg&tilematrixset=PM&tilematrix={z}&tilecol={x}&tilerow={y}', {
+    layer: tileLayer(ign + 'layer=ORTHOIMAGERY.ORTHOPHOTOS&style=normal&tilematrixset=PM&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fjpeg&tilematrixset=PM&tilematrix={z}&tilecol={x}&tilerow={y}', {
       maxZoom: 20,
       attribution: 'IGN'
     })
@@ -59,7 +60,7 @@ export class MapService {
     id: 'igncadastre',
     name: 'Terrain',
     enabled: false,
-    layer: tileLayer('https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/geoportail/wmts?layer=CADASTRALPARCELS.PARCELS&style=bdparcellaire&tilematrixset=PM&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fpng&tilematrixset=PM&tilematrix={z}&tilecol={x}&tilerow={y}', {
+    layer: tileLayer(ign + 'layer=CADASTRALPARCELS.PARCELS&style=bdparcellaire&tilematrixset=PM&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fpng&tilematrixset=PM&tilematrix={z}&tilecol={x}&tilerow={y}', {
       maxZoom: 20,
       attribution: 'Cadastre'
     })
