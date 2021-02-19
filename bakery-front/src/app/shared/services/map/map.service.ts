@@ -45,27 +45,31 @@ export class MapService {
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
     })
   };
+  
   ign = 'https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/geoportail/wmts?';
   ignEnd = '&tilematrixset=PM&tilematrix={z}&tilecol={x}&tilerow={y}';
-  ignsat = this.ign + 'layer=ORTHOIMAGERY.ORTHOPHOTOS';
-  this.ignsat = this.ignsat + '&style=normal';
-  this.ignsat = this.ignsat + '&tilematrixset=PM';
-  this.ignsat = this.ignsat + '&Service=WMTS';
-  this.ignsat = this.ignsat + '&Request=GetTile';
-  this.ignsat = this.ignsat + '&Version=1.0.0';
-  this.ignsat = this.ignsat + '&Format=image%2Fjpeg' + this.ignEnd;
+  ignSat = this.ign + 'layer=ORTHOIMAGERY.ORTHOPHOTOS';
   ignCad = this.ign + 'layer=CADASTRALPARCELS.PARCELS';
+  
+  this.ignSat = this.ignSat + '&style=normal';
+  this.ignSat = this.ignSat + '&tilematrixset=PM';
+  this.ignSat = this.ignSat + '&Service=WMTS';
+  this.ignSat = this.ignSat + '&Request=GetTile';
+  this.ignSat = this.ignSat + '&Version=1.0.0';
+  this.ignSat = this.ignSat + '&Format=image%2Fjpeg' + this.ignEnd;
+  
   this.ignCad = this.ignCad + '&style=bdparcellaire';
   this.ignCad = this.ignCad + '&tilematrixset=PM';
   this.ignCad = this.ignCad + '&Service=WMTS';
   this.ignCad = this.ignCad + '&Request=GetTile';
   this.ignCad = this.ignCad + '&Version=1.0.0';
   this.ignCad = this.ignCad + '&Format=image%2Fpng' + this.ignEnd;
+
   private LAYER_IGN_SATELLITE = {
     id: 'ignsatelite',
     name: 'IGN Satelite',
     enabled: false,
-    layer: tileLayer(ignSat, {
+    layer: tileLayer(this.ignSat, {
       maxZoom: 20,
       attribution: 'IGN'
     })
@@ -75,7 +79,7 @@ export class MapService {
     id: 'igncadastre',
     name: 'Terrain',
     enabled: false,
-    layer: tileLayer(ignCad, {
+    layer: tileLayer(this.ignCad, {
       maxZoom: 20,
       attribution: 'Cadastre'
     })
