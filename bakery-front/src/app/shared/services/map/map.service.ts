@@ -47,11 +47,13 @@ export class MapService {
   };
   ign = 'https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/geoportail/wmts?';
   ignEnd = '&tilematrixset=PM&tilematrix={z}&tilecol={x}&tilerow={y}';
+  ignsat = ign + 'layer=ORTHOIMAGERY.ORTHOPHOTOS&style=normal&tilematrixset=PM&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fjpeg' + ignEnd;
+  ignCad = ign + 'layer=CADASTRALPARCELS.PARCELS&style=bdparcellaire&tilematrixset=PM&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fpng' + ignEnd;
   private LAYER_IGN_SATELLITE = {
     id: 'ignsatelite',
     name: 'IGN Satelite',
     enabled: false,
-    layer: tileLayer(ign + 'layer=ORTHOIMAGERY.ORTHOPHOTOS&style=normal&tilematrixset=PM&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fjpeg' + ignEnd, {
+    layer: tileLayer(ignSat, {
       maxZoom: 20,
       attribution: 'IGN'
     })
@@ -61,7 +63,7 @@ export class MapService {
     id: 'igncadastre',
     name: 'Terrain',
     enabled: false,
-    layer: tileLayer(ign + 'layer=CADASTRALPARCELS.PARCELS&style=bdparcellaire&tilematrixset=PM&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fpng' + ignEnd, {
+    layer: tileLayer(ignCad, {
       maxZoom: 20,
       attribution: 'Cadastre'
     })
