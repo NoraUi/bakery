@@ -47,20 +47,20 @@ export class MapService {
   };
   ign = 'https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/geoportail/wmts?';
   ignEnd = '&tilematrixset=PM&tilematrix={z}&tilecol={x}&tilerow={y}';
-  ignsat = ign + 'layer=ORTHOIMAGERY.ORTHOPHOTOS';
+  ignsat = this.ign + 'layer=ORTHOIMAGERY.ORTHOPHOTOS';
   this.ignsat = this.ignsat + '&style=normal';
   this.ignsat = this.ignsat + '&tilematrixset=PM';
   this.ignsat = this.ignsat + '&Service=WMTS';
   this.ignsat = this.ignsat + '&Request=GetTile';
   this.ignsat = this.ignsat + '&Version=1.0.0';
-  this.ignsat = this.ignsat + '&Format=image%2Fjpeg' + ignEnd;
-  ignCad = ign + 'layer=CADASTRALPARCELS.PARCELS';
+  this.ignsat = this.ignsat + '&Format=image%2Fjpeg' + this.ignEnd;
+  ignCad = this.ign + 'layer=CADASTRALPARCELS.PARCELS';
   this.ignCad = this.ignCad + '&style=bdparcellaire';
   this.ignCad = this.ignCad + '&tilematrixset=PM';
   this.ignCad = this.ignCad + '&Service=WMTS';
   this.ignCad = this.ignCad + '&Request=GetTile';
   this.ignCad = this.ignCad + '&Version=1.0.0';
-  this.ignCad = this.ignCad + '&Format=image%2Fpng' + ignEnd;
+  this.ignCad = this.ignCad + '&Format=image%2Fpng' + this.ignEnd;
   private LAYER_IGN_SATELLITE = {
     id: 'ignsatelite',
     name: 'IGN Satelite',
