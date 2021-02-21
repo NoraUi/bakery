@@ -58,8 +58,8 @@ export class MapService {
   model: LeafletLayers;
 
   constructor() {
-    const ign : string = 'https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/geoportail/wmts?';
-    let ignEnd : string = '&tilematrixset=PM&tilematrix={z}&tilecol={x}&tilerow={y}';
+    const ign = 'https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/geoportail/wmts?';
+    const ignEnd = '&tilematrixset=PM&tilematrix={z}&tilecol={x}&tilerow={y}';
     this.ignSat = ign + 'layer=ORTHOIMAGERY.ORTHOPHOTOS';
     this.ignCad = ign + 'layer=CADASTRALPARCELS.PARCELS';
 
