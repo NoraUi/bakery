@@ -70,11 +70,11 @@ export class HomeComponent implements OnInit {
       page => {
         this.bakeries = page.Items;
         this.totalBakeries = page.ScannedCount;
-        const markers = this.bakeries.map((m: Bakery) => this.markersMap(m) );
+        const markers = this.bakeries.map((m: Bakery) => this.markersMap(m));
         this.mapService.model.overlayLayers = this.mapService.model.overlayLayers.concat(markers);
         if (this.bakeries.length === 0) {
           // Paris is lat: 48.8534 and lon: 2.3488
-          this.mapService.fitBounds = latLngBounds([ 
+          this.mapService.fitBounds = latLngBounds([
                                                      Number(48.8534) + 0.5,
                                                      Number(2.3488) + 0.5 ],
                                                    [ Number(48.8534) - 0.5,

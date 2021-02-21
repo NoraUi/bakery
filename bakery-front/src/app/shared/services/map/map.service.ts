@@ -6,9 +6,9 @@ import { LeafletLayers } from 'src/app/model/layers.model';
 @Injectable()
 export class MapService {
 
-  ignSat : string;
-  ignCad : string;
-    
+  ignSat: string;
+  ignCad: string;
+
   private LAYER_OSM = {
     id: 'openstreetmap',
     name: 'Open Street Map',
@@ -48,28 +48,28 @@ export class MapService {
       subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
     })
   };
-  
+
   private LAYER_IGN_SATELLITE: any;
   private LAYER_IGN_CADASTRAL: any;
 
   layers: Layer[];
   layersControl: any;
   fitBounds: LatLngBounds;
-  model: LeafletLayers; 
+  model: LeafletLayers;
 
   constructor() {
     const ign : string = 'https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/geoportail/wmts?';
     let ignEnd : string = '&tilematrixset=PM&tilematrix={z}&tilecol={x}&tilerow={y}';
     this.ignSat = ign + 'layer=ORTHOIMAGERY.ORTHOPHOTOS';
     this.ignCad = ign + 'layer=CADASTRALPARCELS.PARCELS';
-    
+
     this.ignSat = this.ignSat + '&style=normal';
     this.ignSat = this.ignSat + '&tilematrixset=PM';
     this.ignSat = this.ignSat + '&Service=WMTS';
     this.ignSat = this.ignSat + '&Request=GetTile';
     this.ignSat = this.ignSat + '&Version=1.0.0';
     this.ignSat = this.ignSat + '&Format=image%2Fjpeg' + ignEnd;
-     
+
     this.ignCad = this.ignCad + '&style=bdparcellaire';
     this.ignCad = this.ignCad + '&tilematrixset=PM';
     this.ignCad = this.ignCad + '&Service=WMTS';
