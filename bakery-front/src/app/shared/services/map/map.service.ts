@@ -6,6 +6,9 @@ import { LeafletLayers } from 'src/app/model/layers.model';
 @Injectable()
 export class MapService {
 
+  ignSat : string;
+  ignCad : string;
+    
   private LAYER_OSM = {
     id: 'openstreetmap',
     name: 'Open Street Map',
@@ -46,66 +49,71 @@ export class MapService {
     })
   };
   
- 
-
-  private LAYER_IGN_SATELLITE = {
-    id: 'ignsatelite',
-    name: 'IGN Satelite',
-    enabled: false,
-    layer: tileLayer(this.ignSat, {
-      maxZoom: 20,
-      attribution: 'IGN'
-    })
-  };
-
-  private LAYER_IGN_CADASTRAL = {
-    id: 'igncadastre',
-    name: 'Terrain',
-    enabled: false,
-    layer: tileLayer(this.ignCad, {
-      maxZoom: 20,
-      attribution: 'Cadastre'
-    })
-  };
+  private LAYER_IGN_SATELLITE: any;
+  private LAYER_IGN_CADASTRAL: any;
 
   layers: Layer[];
-  layersControl: any = {
-    baseLayers: {
-      Route: this.LAYER_GM_STREET.layer,
-      Google: this.LAYER_GM_SATELLITE.layer,
-      IGN: this.LAYER_IGN_SATELLITE.layer,
-      Terrain: this.LAYER_GM_TERRAIN.layer,
-      OpenStreetMap: this.LAYER_OSM.layer
-    },
-    overlays: {Cadastre: this.LAYER_IGN_CADASTRAL.layer}
-  };
+  layersControl: any;
   fitBounds: LatLngBounds;
-
-  model = new LeafletLayers(
-    [this.LAYER_GM_STREET, this.LAYER_GM_SATELLITE, this.LAYER_GM_TERRAIN, this.LAYER_OSM],
-    this.LAYER_GM_STREET.id,
-    [this.LAYER_IGN_CADASTRAL]
-  );
+  model: LeafletLayers; 
 
   constructor() {
-    let ign : string = 'https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/geoportail/wmts?';
+    const ign : string = 'https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/geoportail/wmts?';
     let ignEnd : string = '&tilematrixset=PM&tilematrix={z}&tilecol={x}&tilerow={y}';
-    let ignSat : string = ign + 'layer=ORTHOIMAGERY.ORTHOPHOTOS';
-    let ignCad : string = ign + 'layer=CADASTRALPARCELS.PARCELS';
+    this.ignSat = ign + 'layer=ORTHOIMAGERY.ORTHOPHOTOS';
+    this.ignCad = ign + 'layer=CADASTRALPARCELS.PARCELS';
     
-    ignSat = ignSat + '&style=normal';
-    ignSat = ignSat + '&tilematrixset=PM';
-    ignSat = ignSat + '&Service=WMTS';
-    ignSat = ignSat + '&Request=GetTile';
-    ignSat = ignSat + '&Version=1.0.0';
-    ignSat = ignSat + '&Format=image%2Fjpeg' + ignEnd;
+    this.ignSat = this.ignSat + '&style=normal';
+    this.ignSat = this.ignSat + '&tilematrixset=PM';
+    this.ignSat = this.ignSat + '&Service=WMTS';
+    this.ignSat = this.ignSat + '&Request=GetTile';
+    this.ignSat = this.ignSat + '&Version=1.0.0';
+    this.ignSat = this.ignSat + '&Format=image%2Fjpeg' + ignEnd;
      
-    ignCad = ignCad + '&style=bdparcellaire';
-    ignCad = ignCad + '&tilematrixset=PM';
-    ignCad = ignCad + '&Service=WMTS';
-    ignCad = ignCad + '&Request=GetTile';
-    ignCad = ignCad + '&Version=1.0.0';
-    ignCad = ignCad + '&Format=image%2Fpng' + ignEnd;
+    this.ignCad = this.ignCad + '&style=bdparcellaire';
+    this.ignCad = this.ignCad + '&tilematrixset=PM';
+    this.ignCad = this.ignCad + '&Service=WMTS';
+    this.ignCad = this.ignCad + '&Request=GetTile';
+    this.ignCad = this.ignCad + '&Version=1.0.0';
+    this.ignCad = this.ignCad + '&Format=image%2Fpng' + ignEnd;
+
+    this.LAYER_IGN_SATELLITE = {
+      id: 'ignsatelite',
+      name: 'IGN Satelite',
+      enabled: false,
+      layer: tileLayer(this.ignSat, {
+        maxZoom: 20,
+        attribution: 'IGN'
+      })
+    };
+
+    this.layersControl = {
+      baseLayers: {
+        Route: this.LAYER_GM_STREET.layer,
+        Google: this.LAYER_GM_SATELLITE.layer,
+        IGN: this.LAYER_IGN_SATELLITE.layer,
+        Terrain: this.LAYER_GM_TERRAIN.layer,
+        OpenStreetMap: this.LAYER_OSM.layer
+      },
+      overlays: {Cadastre: this.LAYER_IGN_CADASTRAL.layer}
+    };
+
+    this.LAYER_IGN_CADASTRAL = {
+      id: 'igncadastre',
+      name: 'Terrain',
+      enabled: false,
+      layer: tileLayer(this.ignCad, {
+        maxZoom: 20,
+        attribution: 'Cadastre'
+      })
+    };
+
+    this.model = new LeafletLayers(
+      [this.LAYER_GM_STREET, this.LAYER_GM_SATELLITE, this.LAYER_GM_TERRAIN, this.LAYER_OSM],
+      this.LAYER_GM_STREET.id,
+      [this.LAYER_IGN_CADASTRAL]
+    );
+
   }
 
   apply(): void {

@@ -49,14 +49,6 @@ export class HomeComponent implements OnInit {
                             labelTemplateLat: 'Lat: {y}',
                             labelTemplateLng: 'Lon: {x}'
                           }).addTo(map);
-    /*L.control.browserPrint({ title: 'Imprimer la carte',
-                             mode: {
-                               Portrait: 'Portrait',
-                               Landscape: 'Paysage',
-                               Auto: 'Auto',
-                               Custom: 'Séléctionnez la zone'
-                             }
-                           }).addTo(map);*/
     L.control.scale({ position: 'bottomleft', maxWidth: 100, metric: true, imperial: false, updateWhenIdle: false }).addTo(map);
   }
 
@@ -80,11 +72,18 @@ export class HomeComponent implements OnInit {
         this.totalBakeries = page.ScannedCount;
         const markers = this.bakeries.map((m: Bakery) => this.markersMap(m) );
         this.mapService.model.overlayLayers = this.mapService.model.overlayLayers.concat(markers);
-        if (this.bakeries.length == 0) {
+        if (this.bakeries.length === 0) {
           // Paris is lat: 48.8534 and lon: 2.3488
-          this.mapService.fitBounds = latLngBounds([ Number(48.8534) + 0.5, Number(2.3488) + 0.5 ], [ Number(48.8534) - 0.5, Number(2.3488) - 0.5 ]);
-        } else if (this.bakeries.length == 1) {
-          this.mapService.fitBounds = latLngBounds([ Number(this.bakeries[0].lat) + 0.5, Number(this.bakeries[0].lon) + 0.5 ], [ Number(this.bakeries[0].lat) - 0.5, Number(this.bakeries[0].lon) - 0.5 ]);
+          this.mapService.fitBounds = latLngBounds([ 
+                                                     Number(48.8534) + 0.5,
+                                                     Number(2.3488) + 0.5 ],
+                                                   [ Number(48.8534) - 0.5,
+                                                     Number(2.3488) - 0.5 ]);
+        } else if (this.bakeries.length === 1) {
+          this.mapService.fitBounds = latLngBounds([ Number(this.bakeries[0].lat) + 0.5,
+                                                     Number(this.bakeries[0].lon) + 0.5 ],
+                                                   [ Number(this.bakeries[0].lat) - 0.5,
+                                                     Number(this.bakeries[0].lon) - 0.5 ]);
         } else {
           this.mapService.fitBounds = latLngBounds((this.bakeries.map((bakery: Bakery) => [ bakery.lat, bakery.lon] )));
         }
