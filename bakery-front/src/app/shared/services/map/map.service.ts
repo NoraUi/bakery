@@ -87,6 +87,16 @@ export class MapService {
       })
     };
 
+    this.LAYER_IGN_CADASTRAL = {
+      id: 'igncadastre',
+      name: 'Terrain',
+      enabled: false,
+      layer: tileLayer(this.ignCad, {
+        maxZoom: 20,
+        attribution: 'Cadastre'
+      })
+    };
+
     this.layersControl = {
       baseLayers: {
         Route: this.LAYER_GM_STREET.layer,
@@ -96,16 +106,6 @@ export class MapService {
         OpenStreetMap: this.LAYER_OSM.layer
       },
       overlays: {Cadastre: this.LAYER_IGN_CADASTRAL.layer}
-    };
-
-    this.LAYER_IGN_CADASTRAL = {
-      id: 'igncadastre',
-      name: 'Terrain',
-      enabled: false,
-      layer: tileLayer(this.ignCad, {
-        maxZoom: 20,
-        attribution: 'Cadastre'
-      })
     };
 
     this.model = new LeafletLayers(
