@@ -6,6 +6,7 @@ declare module 'leaflet' {
   namespace control {
     function coordinates(options?: any): any;
     function browserPrint(options?: any): any;
+    function gps(options?: any): any;
   }
 }
 

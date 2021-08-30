@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BakeryService } from 'src/app/shared/services/bakery/bakery.service';
 import { Router } from '@angular/router';
-import { Map, control, LatLngLiteral, latLngBounds, icon, marker } from 'leaflet';
+import { Map, control, latLngBounds, icon, marker } from 'leaflet';
 import * as L from 'leaflet';
 import { ZOOM, ATTRIBUTION } from 'src/app/shared/constant/app.constants';
 import { MapService } from 'src/app/shared/services/map/map.service';
 import '../../../../node_modules/leaflet.browser.print/dist/leaflet.browser.print.min.js';
 import '../../../../node_modules/leaflet.coordinates/dist/Leaflet.Coordinates-0.1.5.src.js';
+import '../../../../node_modules/leaflet-gps/src/leaflet-gps.js';
 import { Bakery } from 'src/app/model/bakery.model.js';
 
 @Component({
@@ -50,6 +51,8 @@ export class HomeComponent implements OnInit {
                             labelTemplateLng: 'Lon: {x}'
                           }).addTo(map);
     L.control.scale({ position: 'bottomleft', maxWidth: 100, metric: true, imperial: false, updateWhenIdle: false }).addTo(map);
+
+    map.addControl( L.control.gps({autoCenter:true}) );
   }
 
   ngOnInit() {
