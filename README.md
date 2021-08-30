@@ -4,7 +4,7 @@ Sample application. Angular - AWS Cognito - NodeJs on AWS Lambda.
 ![archi](https://noraui.github.io/img/bakery/archi.gif)
 
 # Continuous Integration status
-[![Build Status](https://travis-ci.org/NoraUi/bakery.svg?branch=master)](https://travis-ci.org/NoraUi/bakery)
+[![Build Status](https://travis-ci.com/NoraUi/bakery.svg?branch=master)](https://travis-ci.com/NoraUi/bakery)
 
 # License
 
