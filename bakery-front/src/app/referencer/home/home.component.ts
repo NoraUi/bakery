@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
                           }).addTo(map);
     L.control.scale({ position: 'bottomleft', maxWidth: 100, metric: true, imperial: false, updateWhenIdle: false }).addTo(map);
 
-    map.addControl( L.control.gps({autoCenter:true}) );
+    map.addControl( L.control.gps({autoCenter: true}) );
   }
 
   ngOnInit() {
